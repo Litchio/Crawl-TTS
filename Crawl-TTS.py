@@ -63,9 +63,11 @@ def FileFromURL(url):
 
 
 if __name__ == "__main__":
-    layout = [[sg.Text('URL TTS')],
-        [sg.InputText(key='BaseURL')], [sg.InputText(key='StartURL')], [sg.InputText(key='HyperLinkText')], [sg.InputText(key='SearchDepth')],
-        [sg.Button("TTS"), sg.Button("Close")]]
+    layout = [[sg.Text('BaseURL')], [sg.InputText(key='BaseURL')], 
+             [sg.Text('StartURL')], [sg.InputText(key='StartURL')], 
+             [sg.Text('HyperLinkText')], [sg.InputText(key='HyperLinkText')], 
+             [sg.Text('SearchDepth')], [sg.InputText(key='SearchDepth')],
+             [sg.Button("TTS"), sg.Button("Close")]]
     window = sg.Window('URL TTS', layout)
     while True:
         event, values = window.read()
