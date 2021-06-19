@@ -23,11 +23,11 @@ def crawl(baseurl, starturl, HyperLinkText, depth):
         urllist.append(currenturl)
         try:
             request = urllib.request.Request(currenturl, None, headers=hdr)
-            response = urllib.request.urlopen(request)
-            htmlBytes = response.read()
-            htmlStr = htmlBytes.decode("utf8")
         except:
-            print("something wrong")
+            print("Error Requesting: " + currenturl)
+        response = urllib.request.urlopen(request)
+        htmlBytes = response.read()
+        htmlStr = htmlBytes.decode("utf8")
         currenturl = re.search(regex, htmlStr).group(0)#, re.DOTALL).group(0)
         links = re.findall("href=[\"\'](.*?)[\"\']", currenturl)       
         print(currenturl, flush=True)
@@ -57,7 +57,10 @@ def ReadText(text, index):
 
 def FileFromURL(url):
     print("Request File of: " + url, flush=True)
-    request = urllib.request.Request(url, None, headers=hdr)
+    try:
+        request = urllib.request.Request(url, None, headers=hdr)
+    except:
+            print("Error Requesting: " + url)
     file = urllib.request.urlopen(request).read()
     return file
 
