@@ -17,7 +17,7 @@ engine = pyttsx3.init()
 def crawl(baseurl, starturl, HyperLinkText, depth):
     i = 0
     currenturl = starturl
-    regex = r'<a.*href=".*">.*'+HyperLinkText+'.*</a>'
+    regex = r'<a[^(<a)]*href="[^(<a)]*">[^(<a)]*' + HyperLinkText + '[^(<a)]*</a>'
     urllist = []
     while i<int(depth):
         urllist.append(currenturl)
